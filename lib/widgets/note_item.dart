@@ -4,6 +4,7 @@ class NoteItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.only(left: 16, top: 16),
       width: double.infinity,
       decoration: BoxDecoration(
         color: Color(0xffFFCC80),
@@ -20,25 +21,32 @@ class NoteItem extends StatelessWidget {
                 color: Colors.black,
               ),
             ),
-            subtitle: Text(
-              "Build your career with Tharwat Samy",
-              style: TextStyle(
-                color: Colors.black.withOpacity(.4),
+            subtitle: Padding(
+              padding: const EdgeInsets.only(top: 16, bottom: 8),
+              child: Text(
+                "Build your career with Tharwat Samy",
+                style: TextStyle(
+                  color: Colors.black.withOpacity(.5),
+                ),
               ),
             ),
             trailing: IconButton(
               onPressed: () {},
               icon: Icon(
                 Icons.delete,
-                size: 34,
+                size: 24,
                 color: Colors.black,
               ),
             ),
           ),
-          Text(
-            "May21 , 2024",
-            style: TextStyle(
-              color: Colors.black.withOpacity(.4),
+          Padding(
+            padding: EdgeInsets.only(right: 24, bottom: 16),
+            child: Text(
+              "May21 , 2024",
+              style: TextStyle(
+                color: Colors.black.withOpacity(.4),
+                fontSize: 16
+              ),
             ),
           ),
         ],
