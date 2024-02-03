@@ -9,6 +9,7 @@ class NotesView extends StatelessWidget {
         elevation: 10,
         onPressed: () {},
         child: Icon(Icons.add),
+        
       ),
       body: NotesViewBody(),
     );
