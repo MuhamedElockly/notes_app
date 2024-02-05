@@ -19,6 +19,9 @@ class EditNote extends StatelessWidget {
               title: 'Title',
               icon: Icons.check,
             ),
+            SizedBox(
+              height: 20,
+            ),
             CustomTextField(
               hintText: 'Title',
             ),
