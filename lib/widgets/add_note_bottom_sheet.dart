@@ -8,24 +8,44 @@ class AddNoteBottomSheet extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16),
       child: SingleChildScrollView(
-        child: Column(
-          children: [
-            CustomTextField(
-              hintText: 'Title',
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            CustomTextField(
-              hintText: 'Content',
-              maxLine: 4,
-            ),
-            SizedBox(
-              height: 48,
-            ),
-            CustomButton()
-          ],
-        ),
+        child: const AddNoteForm(),
+      ),
+    );
+  }
+}
+
+class AddNoteForm extends StatefulWidget {
+  const AddNoteForm({
+    super.key,
+  });
+
+  @override
+  State<AddNoteForm> createState() => _AddNoteFormState();
+}
+
+class _AddNoteFormState extends State<AddNoteForm> {
+  final GlobalKey<FormState> globalKey = GlobalKey();
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: globalKey,
+      child: Column(
+        children: [
+          CustomTextField(
+            hintText: 'Title',
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          CustomTextField(
+            hintText: 'Content',
+            maxLine: 4,
+          ),
+          SizedBox(
+            height: 48,
+          ),
+          CustomButton()
+        ],
       ),
     );
   }
