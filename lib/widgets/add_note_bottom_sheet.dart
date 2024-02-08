@@ -58,10 +58,8 @@ class _AddNoteFormState extends State<AddNoteForm> {
               if (globalKey.currentState!.validate()) {
                 globalKey.currentState!.save();
               } else {
-                AutovalidateMode.always;
-                setState(() {
-                  
-                });
+                autovalidateMode = AutovalidateMode.always;
+                setState(() {});
               }
             },
           )
