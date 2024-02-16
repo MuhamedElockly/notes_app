@@ -11,6 +11,7 @@ class SimpleBlocObserver implements BlocObserver {
     // TODO: implement onClose
   }
 
+
   @override
   void onCreate(BlocBase bloc) {
     // TODO: implement onCreate
