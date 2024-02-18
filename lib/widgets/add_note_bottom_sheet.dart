@@ -71,6 +71,9 @@ class _AddNoteFormState extends State<AddNoteForm> {
                   onTap: () {
                     if (globalKey.currentState!.validate()) {
                       globalKey.currentState!.save();
+
+
+                       var noteModel=NoteModel(title: title!, subTitle: subTitle!, date: Date, color: color)
                     } else {
                       autovalidateMode = AutovalidateMode.always;
                       setState(() {});
