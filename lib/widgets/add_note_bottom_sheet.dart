@@ -11,9 +11,7 @@ class AddNoteBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16),
-      child: SingleChildScrollView(
-        child: const AddNoteForm(),
-      ),
+      child: const AddNoteForm(),
     );
   }
 }
@@ -44,49 +42,52 @@ class _AddNoteFormState extends State<AddNoteForm> {
       builder: (context, state) {
         return ModalProgressHUD(
           inAsyncCall: state is AddNoteLoading ? true : false,
-          child: Form(
-            key: globalKey,
-            autovalidateMode: autovalidateMode,
-            child: Column(
-              children: [
-                CustomTextField(
-                  hintText: 'Title',
-                  onSaved: (value) {
-                    title = value;
-                  },
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                CustomTextField(
-                  hintText: 'Content',
-                  maxLine: 4,
-                  onSaved: (value) {
-                    subTitle = value;
-                  },
-                ),
-                SizedBox(
-                  height: 48,
-                ),
-                CustomButton(
-                  onTap: () {
-                    if (globalKey.currentState!.validate()) {
-                      globalKey.currentState!.save();
+          child: SingleChildScrollView(
+            child: Form(
+              key: globalKey,
+              autovalidateMode: autovalidateMode,
+              child: Column(
+                children: [
+                  CustomTextField(
+                    hintText: 'Title',
+                    onSaved: (value) {
+                      title = value;
+                    },
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  CustomTextField(
+                    hintText: 'Content',
+                    maxLine: 4,
+                    onSaved: (value) {
+                      subTitle = value;
+                    },
+                  ),
+                  SizedBox(
+                    height: 48,
+                  ),
+                  CustomButton(
+                    onTap: () {
+                      if (globalKey.currentState!.validate()) {
+                        globalKey.currentState!.save();
 
-                      var noteModel = NoteModel(
-                        title: title!,
-                        subTitle: subTitle!,
-                        date: DateTime.now().toString(),
-                        color: Colors.orange.value,
-                      );
-                      BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
-                    } else {
-                      autovalidateMode = AutovalidateMode.always;
-                      setState(() {});
-                    }
-                  },
-                )
-              ],
+                        var noteModel = NoteModel(
+                          title: title!,
+                          subTitle: subTitle!,
+                          date: DateTime.now().toString(),
+                          color: Colors.orange.value,
+                        );
+                        BlocProvider.of<AddNoteCubit>(context)
+                            .addNote(noteModel);
+                      } else {
+                        autovalidateMode = AutovalidateMode.always;
+                        setState(() {});
+                      }
+                    },
+                  )
+                ],
+              ),
             ),
           ),
         );
