@@ -40,6 +40,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
         }
       },
       builder: (context, state) {
+        print('Stattttee : ' + state.toString());
         return ModalProgressHUD(
           inAsyncCall: state is AddNoteLoading ? true : false,
           child: SingleChildScrollView(
@@ -80,7 +81,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                         );
                         BlocProvider.of<AddNoteCubit>(context)
                             .addNote(noteModel);
-                        print('Title : $title');
+                        setState(() {});
                       } else {
                         autovalidateMode = AutovalidateMode.always;
                         setState(() {});
