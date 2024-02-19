@@ -42,7 +42,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
           }
         },
         builder: (context, state) {
-          // print('Stattttee : ' + state.toString());
+      
           return AbsorbPointer(
             absorbing: state is AddNoteLoading ? true : false,
             child: SingleChildScrollView(
