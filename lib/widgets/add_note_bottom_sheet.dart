@@ -32,68 +32,71 @@ class _AddNoteFormState extends State<AddNoteForm> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AddNoteCubit, AddNoteState>(
-      listener: (context, state) {
-        if (state is AddNoteFailure) {
-        } else if (state is AddNoteSuccess) {
-          Navigator.pop(context);
-        }
-      },
-      builder: (context, state) {
-        print('Stattttee : ' + state.toString());
-        return ModalProgressHUD(
-          inAsyncCall: state is AddNoteLoading ? true : false,
-          child: SingleChildScrollView(
-            child: Form(
-              key: globalKey,
-              autovalidateMode: autovalidateMode,
-              child: Column(
-                children: [
-                  CustomTextField(
-                    hintText: 'Title',
-                    onSaved: (value) {
-                      title = value;
-                    },
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  CustomTextField(
-                    hintText: 'Content',
-                    maxLine: 4,
-                    onSaved: (value) {
-                      subTitle = value;
-                    },
-                  ),
-                  SizedBox(
-                    height: 48,
-                  ),
-                  CustomButton(
-                    onTap: () {
-                      if (globalKey.currentState!.validate()) {
-                        globalKey.currentState!.save();
+    return BlocProvider(
+      create: (context) => AddNoteCubit(),
+      child: BlocConsumer<AddNoteCubit, AddNoteState>(
+        listener: (context, state) {
+          if (state is AddNoteFailure) {
+          } else if (state is AddNoteSuccess) {
+            Navigator.pop(context);
+          }
+        },
+        builder: (context, state) {
+          print('Stattttee : ' + state.toString());
+          return ModalProgressHUD(
+            inAsyncCall: state is AddNoteLoading ? true : false,
+            child: SingleChildScrollView(
+              child: Form(
+                key: globalKey,
+                autovalidateMode: autovalidateMode,
+                child: Column(
+                  children: [
+                    CustomTextField(
+                      hintText: 'Title',
+                      onSaved: (value) {
+                        title = value;
+                      },
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    CustomTextField(
+                      hintText: 'Content',
+                      maxLine: 4,
+                      onSaved: (value) {
+                        subTitle = value;
+                      },
+                    ),
+                    SizedBox(
+                      height: 48,
+                    ),
+                    CustomButton(
+                      onTap: () {
+                        if (globalKey.currentState!.validate()) {
+                          globalKey.currentState!.save();
 
-                        var noteModel = NoteModel(
-                          title: title!,
-                          subTitle: subTitle!,
-                          date: DateTime.now().toString(),
-                          color: Colors.orange.value,
-                        );
-                        BlocProvider.of<AddNoteCubit>(context)
-                            .addNote(noteModel);
-                        setState(() {});
-                      } else {
-                        autovalidateMode = AutovalidateMode.always;
-                        setState(() {});
-                      }
-                    },
-                  )
-                ],
+                          var noteModel = NoteModel(
+                            title: title!,
+                            subTitle: subTitle!,
+                            date: DateTime.now().toString(),
+                            color: Colors.orange.value,
+                          );
+                          BlocProvider.of<AddNoteCubit>(context)
+                              .addNote(noteModel);
+                          setState(() {});
+                        } else {
+                          autovalidateMode = AutovalidateMode.always;
+                          setState(() {});
+                        }
+                      },
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }
