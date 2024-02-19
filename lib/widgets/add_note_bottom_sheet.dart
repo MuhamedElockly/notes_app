@@ -42,9 +42,10 @@ class _AddNoteFormState extends State<AddNoteForm> {
           }
         },
         builder: (context, state) {
-          print('Stattttee : ' + state.toString());
-          return ModalProgressHUD(
-            inAsyncCall: state is AddNoteLoading ? true : false,
+          // print('Stattttee : ' + state.toString());
+
+          return AbsorbPointer(
+            absorbing: state is AddNoteLoading ? true : false,
             child: SingleChildScrollView(
               child: Form(
                 key: globalKey,
@@ -71,6 +72,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                       height: 48,
                     ),
                     CustomButton(
+                      isLoading: state is AddNoteLoading ? true : false,
                       onTap: () {
                         if (globalKey.currentState!.validate()) {
                           globalKey.currentState!.save();
