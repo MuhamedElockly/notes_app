@@ -44,51 +44,58 @@ class _AddNoteFormState extends State<AddNoteForm> {
         builder: (context, state) {
           return AbsorbPointer(
             absorbing: state is AddNoteLoading ? true : false,
-            child: SingleChildScrollView(
-              child: Form(
-                key: globalKey,
-                autovalidateMode: autovalidateMode,
-                child: Column(
-                  children: [
-                    CustomTextField(
-                      hintText: 'Title ',
-                      onSaved: (value) {
-                        title = value;
-                      },
-                    ),
-                    SizedBox(height: 20),
-                    CustomTextField(
-                      hintText: 'Content',
-                      maxLine: 4,
-                      onSaved: (value) {
-                        subTitle = value;
-                      },
-                    ),
-                    SizedBox(
-                      height: 48,
-                    ),
-                    CustomButton(
-                      isLoading: state is AddNoteLoading ? true : false,
-                      onTap: () {
-                        if (globalKey.currentState!.validate()) {
-                          globalKey.currentState!.save();
+            child: Padding(
+              padding: EdgeInsets.only(
+                left: 16,
+                right: 16,
+                bottom: MediaQuery.of(context).viewInsets.bottom,
+              ),
+              child: SingleChildScrollView(
+                child: Form(
+                  key: globalKey,
+                  autovalidateMode: autovalidateMode,
+                  child: Column(
+                    children: [
+                      CustomTextField(
+                        hintText: 'Title ',
+                        onSaved: (value) {
+                          title = value;
+                        },
+                      ),
+                      SizedBox(height: 20),
+                      CustomTextField(
+                        hintText: 'Content',
+                        maxLine: 4,
+                        onSaved: (value) {
+                          subTitle = value;
+                        },
+                      ),
+                      SizedBox(
+                        height: 48,
+                      ),
+                      CustomButton(
+                        isLoading: state is AddNoteLoading ? true : false,
+                        onTap: () {
+                          if (globalKey.currentState!.validate()) {
+                            globalKey.currentState!.save();
 
-                          var noteModel = NoteModel(
-                            title: title!,
-                            subTitle: subTitle!,
-                            date: DateTime.now().toString(),
-                            color: Colors.orange.value,
-                          );
-                          BlocProvider.of<AddNoteCubit>(context)
-                              .addNote(noteModel);
-                          setState(() {});
-                        } else {
-                          autovalidateMode = AutovalidateMode.always;
-                          setState(() {});
-                        }
-                      },
-                    )
-                  ],
+                            var noteModel = NoteModel(
+                              title: title!,
+                              subTitle: subTitle!,
+                              date: DateTime.now().toString(),
+                              color: Colors.orange.value,
+                            );
+                            BlocProvider.of<AddNoteCubit>(context)
+                                .addNote(noteModel);
+                            setState(() {});
+                          } else {
+                            autovalidateMode = AutovalidateMode.always;
+                            setState(() {});
+                          }
+                        },
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
