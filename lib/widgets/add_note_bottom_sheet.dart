@@ -42,7 +42,6 @@ class _AddNoteFormState extends State<AddNoteForm> {
           }
         },
         builder: (context, state) {
-      
           return AbsorbPointer(
             absorbing: state is AddNoteLoading ? true : false,
             child: SingleChildScrollView(
@@ -57,9 +56,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                         title = value;
                       },
                     ),
-                    SizedBox(
-                      height: 20
-                    ),
+                    SizedBox(height: 20),
                     CustomTextField(
                       hintText: 'Content',
                       maxLine: 4,
