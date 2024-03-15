@@ -8,34 +8,30 @@ import 'package:notes_app/widgets/notes_view_body.dart';
 class NotesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => NotesCubitCubit(),
-      
-      child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: kPrimaryColor,
-          foregroundColor: kSecendryColor,
-          elevation: 10,
-          onPressed: () {
-            showModalBottomSheet(
-              isScrollControlled: true,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(32),
-              ),
-              context: context,
-              builder: (context) {
-                return AddNoteBottomSheet();
-              },
-            );
-          },
-          child: Icon(Icons.add),
-        ),
-        body: GestureDetector(
-          onTap: () {
-            Navigator.pushNamed(context, 'EditPage');
-          },
-          child: NotesViewBody(),
-        ),
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: kPrimaryColor,
+        foregroundColor: kSecendryColor,
+        elevation: 10,
+        onPressed: () {
+          showModalBottomSheet(
+            isScrollControlled: true,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(32),
+            ),
+            context: context,
+            builder: (context) {
+              return AddNoteBottomSheet();
+            },
+          );
+        },
+        child: Icon(Icons.add),
+      ),
+      body: GestureDetector(
+        onTap: () {
+          Navigator.pushNamed(context, 'EditPage');
+        },
+        child: NotesViewBody(),
       ),
     );
   }

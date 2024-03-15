@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:notes_app/cubits/cubit/cubit/add_note_cubit.dart';
+import 'package:notes_app/cubits/cubit/cubit/notes_cubit_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/widgets/custom_button.dart';
 import 'package:notes_app/widgets/custom_text_field%20copy.dart';
@@ -39,6 +40,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
         listener: (context, state) {
           if (state is AddNoteFailure) {
           } else if (state is AddNoteSuccess) {
+            BlocProvider.of<NotesCubitCubit>(context).fetchAllNotes();
             Navigator.pop(context);
           }
         },
@@ -90,6 +92,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                             );
                             BlocProvider.of<AddNoteCubit>(context)
                                 .addNote(noteModel);
+
                             setState(() {});
                           } else {
                             autovalidateMode = AutovalidateMode.always;
