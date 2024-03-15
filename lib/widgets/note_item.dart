@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/models/note_model.dart';
 
 class NoteItem extends StatelessWidget {
+  final NoteModel noteModel;
+
+  const NoteItem({super.key, required this.noteModel});
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: 16, top: 16),
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Color(0xffFFCC80),
+        color: Color(noteModel.color),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -15,7 +19,7 @@ class NoteItem extends StatelessWidget {
         children: [
           ListTile(
             title: Text(
-              'Flutter Tips',
+              noteModel.title,
               style: TextStyle(
                 fontSize: 28,
                 color: Colors.black,
@@ -24,7 +28,7 @@ class NoteItem extends StatelessWidget {
             subtitle: Padding(
               padding: const EdgeInsets.only(top: 16, bottom: 8),
               child: Text(
-                "Build your career with Tharwat Samy",
+                noteModel.subTitle,
                 style: TextStyle(
                   color: Colors.black.withOpacity(.5),
                 ),
@@ -42,11 +46,9 @@ class NoteItem extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(right: 24, bottom: 16),
             child: Text(
-              "May21 , 2024",
-              style: TextStyle(
-                color: Colors.black.withOpacity(.4),
-                fontSize: 16
-              ),
+              noteModel.date,
+              style:
+                  TextStyle(color: Colors.black.withOpacity(.4), fontSize: 16),
             ),
           ),
         ],
