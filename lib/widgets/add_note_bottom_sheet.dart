@@ -5,6 +5,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:notes_app/cubits/cubit/cubit/add_note_cubit.dart';
 import 'package:notes_app/cubits/cubit/cubit/notes_cubit_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
+import 'package:notes_app/widgets/color_list_view.dart';
 import 'package:notes_app/widgets/custom_button.dart';
 import 'package:notes_app/widgets/custom_text_field%20copy.dart';
 
@@ -76,7 +77,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                       SizedBox(
                         height: 48,
                       ),
-                      ColorItem(),
+                      ColorsListView(),
                       CustomButton(
                         isLoading: state is AddNoteLoading ? true : false,
                         onTap: () {
@@ -109,26 +110,6 @@ class _AddNoteFormState extends State<AddNoteForm> {
           );
         },
       ),
-    );
-  }
-}
-
-class ColorItem extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return CircleAvatar(
-      backgroundColor: Colors.blue,
-    );
-  }
-}
-
-class ColorsListView extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      itemBuilder: (context, index) {
-        return ColorItem();
-      },
     );
   }
 }
