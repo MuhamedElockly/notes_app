@@ -31,7 +31,7 @@ class AddNoteForm extends StatefulWidget {
 class _AddNoteFormState extends State<AddNoteForm> {
   final GlobalKey<FormState> globalKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  String? title, subTitle;
+  String? title='title', subTitle='subTitle';
 
   @override
   Widget build(BuildContext context) {
@@ -75,9 +75,12 @@ class _AddNoteFormState extends State<AddNoteForm> {
                         },
                       ),
                       SizedBox(
-                        height: 48,
+                        height: 32,
                       ),
                       ColorsListView(),
+                      SizedBox(
+                        height: 32,
+                      ),
                       CustomButton(
                         isLoading: state is AddNoteLoading ? true : false,
                         onTap: () {
