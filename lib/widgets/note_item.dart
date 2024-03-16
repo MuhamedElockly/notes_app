@@ -9,54 +9,59 @@ class NoteItem extends StatelessWidget {
   const NoteItem({super.key, required this.noteModel});
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(left: 16, top: 16),
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: Color(noteModel.color),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          ListTile(
-            title: Text(
-              noteModel.title,
-              style: TextStyle(
-                fontSize: 28,
-                color: Colors.black,
-              ),
-            ),
-            subtitle: Padding(
-              padding: const EdgeInsets.only(top: 16, bottom: 8),
-              child: Text(
-                noteModel.subTitle,
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, 'EditPage');
+      },
+      child: Container(
+        padding: EdgeInsets.only(left: 16, top: 16),
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: Color(noteModel.color),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            ListTile(
+              title: Text(
+                noteModel.title,
                 style: TextStyle(
-                  color: Colors.black.withOpacity(.5),
+                  fontSize: 28,
+                  color: Colors.black,
+                ),
+              ),
+              subtitle: Padding(
+                padding: const EdgeInsets.only(top: 16, bottom: 8),
+                child: Text(
+                  noteModel.subTitle,
+                  style: TextStyle(
+                    color: Colors.black.withOpacity(.5),
+                  ),
+                ),
+              ),
+              trailing: IconButton(
+                onPressed: () {
+                  noteModel.delete();
+                  BlocProvider.of<NotesCubitCubit>(context).fetchAllNotes();
+                },
+                icon: Icon(
+                  Icons.delete,
+                  size: 24,
+                  color: Colors.black,
                 ),
               ),
             ),
-            trailing: IconButton(
-              onPressed: () {
-                noteModel.delete();
-                BlocProvider.of<NotesCubitCubit>(context).fetchAllNotes();
-              },
-              icon: Icon(
-                Icons.delete,
-                size: 24,
-                color: Colors.black,
+            Padding(
+              padding: EdgeInsets.only(right: 24, bottom: 16),
+              child: Text(
+                noteModel.date,
+                style: TextStyle(
+                    color: Colors.black.withOpacity(.4), fontSize: 16),
               ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(right: 24, bottom: 16),
-            child: Text(
-              noteModel.date,
-              style:
-                  TextStyle(color: Colors.black.withOpacity(.4), fontSize: 16),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

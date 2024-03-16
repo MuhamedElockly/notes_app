@@ -27,12 +27,7 @@ class NotesView extends StatelessWidget {
         },
         child: Icon(Icons.add),
       ),
-      body: GestureDetector(
-        onTap: () {
-          Navigator.pushNamed(context, 'EditPage');
-        },
-        child: NotesViewBody(),
-      ),
+      body: NotesViewBody(),
     );
   }
 }
