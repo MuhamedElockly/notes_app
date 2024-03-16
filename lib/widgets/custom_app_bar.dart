@@ -3,8 +3,9 @@ import 'package:notes_app/widgets/custom_search_item.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String title;
+  final void Function()? onPressed;
   final IconData icon;
-  const CustomAppBar({super.key, required this.title, required this.icon});
+  const CustomAppBar({super.key, required this.title, required this.icon, this.onPressed});
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -19,6 +20,7 @@ class CustomAppBar extends StatelessWidget {
         Spacer(),
         CustomSearchItem(
           icon: icon,
+          onPressed: onPressed,
         ),
       ],
     );
