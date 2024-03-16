@@ -76,6 +76,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                       SizedBox(
                         height: 48,
                       ),
+                      ColorItem(),
                       CustomButton(
                         isLoading: state is AddNoteLoading ? true : false,
                         onTap: () {
@@ -108,6 +109,26 @@ class _AddNoteFormState extends State<AddNoteForm> {
           );
         },
       ),
+    );
+  }
+}
+
+class ColorItem extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return CircleAvatar(
+      backgroundColor: Colors.blue,
+    );
+  }
+}
+
+class ColorsListView extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemBuilder: (context, index) {
+        return ColorItem();
+      },
     );
   }
 }
