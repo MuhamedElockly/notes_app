@@ -4,17 +4,23 @@ import 'package:notes_app/cubits/cubit/cubit/add_note_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/widgets/color_item.dart';
 
-class ColorsListView extends StatefulWidget {
-  ColorsListView({
+class EditNoteColorList extends StatefulWidget {
+  EditNoteColorList({
     super.key,
+    required this.noteModel,
   });
-
+  final NoteModel noteModel;
   @override
-  State<ColorsListView> createState() => _ColorsListViewState();
+  State<EditNoteColorList> createState() => _ColorsListViewState();
 }
 
-class _ColorsListViewState extends State<ColorsListView> {
+class _ColorsListViewState extends State<EditNoteColorList> {
   int selectedIndex = 0;
+  @override
+  void initState() {
+    super.initState();
+    selectedIndex = colors.indexOf(Color(widget.noteModel.color));
+  }
 
   List<Color> colors = [
     Color(0xff001524),
@@ -40,8 +46,8 @@ class _ColorsListViewState extends State<ColorsListView> {
             padding: const EdgeInsets.only(left: 4, bottom: 6),
             child: GestureDetector(
               onTap: () {
-                BlocProvider.of<AddNoteCubit>(context).color = colors[index];
                 selectedIndex = index;
+                widget.noteModel.color = colors[selectedIndex].value;
                 setState(() {});
               },
               child: ColorItem(

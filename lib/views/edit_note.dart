@@ -3,8 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/constants.dart';
 import 'package:notes_app/cubits/cubit/cubit/notes_cubit_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
+import 'package:notes_app/widgets/color_list_view.dart';
 import 'package:notes_app/widgets/custom_app_bar.dart';
 import 'package:notes_app/widgets/custom_text_field%20copy.dart';
+import 'package:notes_app/widgets/edit_note_color_list.dart';
 import 'package:notes_app/widgets/notes_view_body.dart';
 
 class EditNote extends StatefulWidget {
@@ -60,6 +62,10 @@ class _EditNoteState extends State<EditNote> {
               hintText: noteModel.subTitle,
               maxLine: 3,
             ),
+            SizedBox(
+              height: 50,
+            ),
+            EditNoteColorList(noteModel: noteModel),
           ],
         ),
       ),
