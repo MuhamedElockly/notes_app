@@ -14,6 +14,7 @@ class EditNote extends StatefulWidget {
   State<EditNote> createState() => _EditNoteState();
 }
 
+
 class _EditNoteState extends State<EditNote> {
   String? title, content;
 
